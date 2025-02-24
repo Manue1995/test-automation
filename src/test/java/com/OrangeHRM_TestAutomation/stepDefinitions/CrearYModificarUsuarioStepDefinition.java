@@ -83,7 +83,7 @@ public class CrearYModificarUsuarioStepDefinition {
     public void elSistemaDeberíaMostrarUnMensajeConfirmandoLaCreaciónDelUsuario() {
 
         manuel.should(seeThat(ValidarCreacion.displayed(),equalTo(true)));
-        System.out.println("Creacion Exitosa");
+        System.out.println("Creacion Exitosa de Usuario");
 
 
     }
