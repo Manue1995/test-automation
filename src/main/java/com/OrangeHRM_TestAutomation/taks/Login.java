@@ -32,6 +32,8 @@ public class Login implements Task {
 
             leerExcel = ExcelPrincipal.leerDatosDeHojaDeExcel("Data1.xlsx","DatosLogin");
 
+            // Secuencia de acciones que el actor ejecutará en la interfaz de usuario
+
                 actor.attemptsTo(
 
                         Enter.theValue(leerExcel.get(0).get("Usuario")).into(USERNAME_FIELD),

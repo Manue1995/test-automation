@@ -13,6 +13,8 @@ public class ModificarUsuarioESS implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
+        // Secuencia de acciones que el actor ejecutará en la interfaz de usuario
+
         actor.attemptsTo( Click.on(ADMIN_TAB) );
 
         if(EDIT_BUTTON.isVisibleFor(actor)){

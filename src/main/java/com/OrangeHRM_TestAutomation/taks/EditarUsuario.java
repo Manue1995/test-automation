@@ -32,6 +32,9 @@ public class EditarUsuario implements Task {
 
         leerExcel = ExcelPrincipal.leerDatosDeHojaDeExcel("Data1.xlsx","DatosCreacion");
 
+        // Secuencia de acciones que el actor ejecutará en la interfaz de usuario
+
+
         actor.attemptsTo(
 
                 Click.on(USER_ROLE_ESS),

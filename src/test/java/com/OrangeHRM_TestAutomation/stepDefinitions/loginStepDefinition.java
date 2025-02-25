@@ -35,10 +35,6 @@ public class loginStepDefinition {
 
         manuel.can(BrowseTheWeb.with(navegador));
 
-         //navegador = new ChromeDriver();  // Configura el driver
-        //navegador.manage().window().maximize();
-        //manuel.can(BrowseTheWeb.with(navegador));
-
     }
 
     @Given("el usuario está en la página de login")

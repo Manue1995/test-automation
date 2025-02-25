@@ -15,6 +15,8 @@ public class EliminarUsuario implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
+        // Secuencia de acciones que el actor ejecutará en la interfaz de usuario
+
         actor.attemptsTo(
 
                 Click.on(DELETE_BUTTON),
