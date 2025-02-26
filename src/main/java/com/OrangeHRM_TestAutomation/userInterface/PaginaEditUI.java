@@ -24,10 +24,10 @@ public class PaginaEditUI {
             .locatedBy("//div[contains(text(),'1Andres1234')]/parent::div/parent::div//*[contains(text(),'ESS')]");
 
     public static final Target USERNAME_VALIDATION = Target.the("Validar estado")
-            .locatedBy("//div[contains(text(),'1Andres1234')]");
+            .locatedBy("//div[text()='{0}']");
 
     public static final Target DELETE_BUTTON = Target.the("Eliminar Registro")
-            .locatedBy("//div[contains(text(),'1Andres1234')]/parent::div/parent::div//button//i[@class='oxd-icon bi-trash']");
+            .locatedBy("//div[contains(text(),'{0}')]/parent::div/parent::div//button//i[@class='oxd-icon bi-trash']");
 
     public static final Target YES_DELETE_BUTTON = Target.the("Eliminar Registro")
             .locatedBy("//button/i[@class='oxd-icon bi-trash oxd-button-icon']");

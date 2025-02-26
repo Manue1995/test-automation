@@ -47,14 +47,13 @@ public class CrearYModificarUsuarioStepDefinition {
 
 
         manuel.attemptsTo(EditarUsuario.editarUsuario());
-       // manuel.attemptsTo(EliminarUsuario.eliminarUsuario());
 
     }
 
     @Then("el sistema debería mostrar un mensaje confirmando la modificación del usuario")
     public void elSistemaDeberíaMostrarUnMensajeConfirmandoLaModificaciónDelUsuario() {
 
-        if(ValidarNombre.displayed().answeredBy(manuel)){
+
             if (ValidarRol.displayed().answeredBy(manuel)){
                 if (ValidarEstado.displayed().answeredBy(manuel)){
 
@@ -66,14 +65,10 @@ public class CrearYModificarUsuarioStepDefinition {
             }else {
                 System.out.println("Validacion de Nombre y Rol");
             }
-        }else {
-            System.out.println("Error");
 
-        }
 
         manuel.attemptsTo(EliminarUsuario.eliminarUsuario());
         manuel.should(seeThat(ValidarNombre.displayed(),equalTo(false)));
-        System.out.println("Usuario Eliminado");
 
     }
 
@@ -82,7 +77,6 @@ public class CrearYModificarUsuarioStepDefinition {
 
         manuel.should(seeThat(ValidarCreacion.displayed(),equalTo(true)));
         System.out.println("Creacion Exitosa de Usuario");
-
 
     }
 }

@@ -10,22 +10,15 @@ import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class ModificarUsuarioESS implements Task {
 
+
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        // Secuencia de acciones que el actor ejecutará en la interfaz de usuario
 
-        actor.attemptsTo( Click.on(ADMIN_TAB) );
+            // Secuencia de acciones que el actor ejecutará en la interfaz de usuario
 
-        if(EDIT_BUTTON.isVisibleFor(actor)){
+                actor.attemptsTo(Click.on(ADMIN_TAB));
 
-            actor.attemptsTo(Click.on(EDIT_BUTTON));
-
-        }else{
-
-            System.out.println("Usuario no se encuentra");
-
-        }
 
     }
 

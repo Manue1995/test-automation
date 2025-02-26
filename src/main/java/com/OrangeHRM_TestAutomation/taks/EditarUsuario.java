@@ -16,6 +16,7 @@ import java.util.Map;
 import static com.OrangeHRM_TestAutomation.userInterface.PaginaAdminUI.*;
 import static com.OrangeHRM_TestAutomation.userInterface.PaginaEditUI.*;
 import static com.OrangeHRM_TestAutomation.userInterface.PaginaInicioUI.ERROR_MESSAGE;
+import static com.OrangeHRM_TestAutomation.userInterface.PaginaInicioUI.LOGIN_BUTTON;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
@@ -34,22 +35,43 @@ public class EditarUsuario implements Task {
 
         // Secuencia de acciones que el actor ejecutará en la interfaz de usuario
 
+            for (int i = 0; i < 2; i++) {
 
-        actor.attemptsTo(
+                if (EDIT_BUTTON.isVisibleFor(actor)) {
 
-                Click.on(USER_ROLE_ESS),
-                Click.on(ESS_ROLE_OPTION),Click.on(STATUS_DROPDOWN),
-                Click.on(DISABLE_OPTION),
-                DoubleClick.on(USERNAME),
-                Hit.the(Keys.DELETE).into(CLEAR_FIELD),
-                Enter.theValue(leerExcel.get(1).get("Username")).into(NEW_USERNAME),
-                SetCheckbox.of(CHECKBOX).toTrue(),
-                Enter.theValue(leerExcel.get(1).get("Password")).into(PASSWORD),
-                Enter.theValue(leerExcel.get(1).get("Password")).into(CONFIRM_PASSWORD),
-                Click.on(SAVE_BUTTON),
-                WaitUntil.the(USERNAME_VALIDATION,isVisible()).forNoMoreThan(30).seconds()
+                    actor.attemptsTo(Click.on(EDIT_BUTTON));
 
-            );
+                } else {
+
+                    actor.attemptsTo(
+
+                            Enter.theValue(leerExcel.get(1).get("Username")).into(USERNAME),
+                            Click.on(LOGIN_BUTTON),
+                            Click.on(EDIT_BUTTON1)
+
+                    );
+
+
+                }
+
+                actor.attemptsTo(
+
+                        Click.on(USER_ROLE_ESS),
+                        Click.on(ESS_ROLE_OPTION), Click.on(STATUS_DROPDOWN),
+                        Click.on(DISABLE_OPTION),
+                        DoubleClick.on(USERNAME),
+                        Hit.the(Keys.DELETE).into(CLEAR_FIELD),
+                        Enter.theValue(leerExcel.get(i).get("Username1")).into(NEW_USERNAME),
+                        SetCheckbox.of(CHECKBOX).toTrue(),
+                        Enter.theValue(leerExcel.get(1).get("Password")).into(PASSWORD),
+                        Enter.theValue(leerExcel.get(1).get("Password")).into(CONFIRM_PASSWORD),
+                        Click.on(SAVE_BUTTON),
+                        WaitUntil.the(USERNAME_VALIDATION.of(leerExcel.get(i).get("Validacion"))
+                                ,isVisible()).forNoMoreThan(30).seconds()
+
+                );
+
+            }
 
          } catch (
             IOException e) {

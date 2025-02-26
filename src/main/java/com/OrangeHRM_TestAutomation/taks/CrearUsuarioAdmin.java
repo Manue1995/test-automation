@@ -31,23 +31,28 @@ public class CrearUsuarioAdmin implements Task {
 
         // Secuencia de acciones que el actor ejecutará en la interfaz de usuario
 
-        actor.attemptsTo(
+         //Crea dos usuario segun iteracion
 
-                    WaitUntil.the(ADMIN_TAB,isVisible()).forNoMoreThan(10).seconds(),
+        for (int i = 0; i < 2; i++)
+            {
+
+            actor.attemptsTo(
+
+                    WaitUntil.the(ADMIN_TAB, isVisible()).forNoMoreThan(10).seconds(),
                     Click.on(ADMIN_TAB),
                     Click.on(ADD_USER_BUTTON),
                     Click.on(USER_ROLE_DROPDOWN),
                     Click.on(ADMIN_ROLE_OPTION),
                     Enter.theValue(leerExcel.get(0).get("EmployeeName")).into(EMPLOYEE_NAME),
                     Click.on(EMPLOYEE),
-                    Click.on(STATUS_DROPDOWN),Click.on(ENABLED_OPTION),
-                    Enter.theValue(leerExcel.get(0).get("Username")).into(USERNAME),
+                    Click.on(STATUS_DROPDOWN), Click.on(ENABLED_OPTION),
+                    Enter.theValue(leerExcel.get(i).get("Username")).into(USERNAME),
                     Enter.theValue(leerExcel.get(0).get("Password")).into(PASSWORD),
                     Enter.theValue(leerExcel.get(0).get("Password")).into(CONFIRM_PASSWORD),
                     Click.on(SAVE_BUTTON),
-                    WaitUntil.the(SUCCES_MESSAGE,isVisible()).forNoMoreThan(30).seconds()
-
-            );
+                    WaitUntil.the(SUCCES_MESSAGE, isVisible()).forNoMoreThan(30).seconds()
+                    );
+            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);

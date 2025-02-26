@@ -43,6 +43,9 @@ public class PaginaAdminUI {
     public static final Target EDIT_BUTTON = Target.the("Editar Boton")
             .locatedBy("//div[contains(text(),'1Manuel1234')]/parent::div/parent::div//button//i[@class='oxd-icon bi-pencil-fill']");
 
+    public static final Target EDIT_BUTTON1 = Target.the("Nombre de Usuarii")
+            .locatedBy("//button//i[@class='oxd-icon bi-pencil-fill']");
+
     public static final Target SUCCES_MESSAGE = Target.the("Nombre de Usuarii")
             .locatedBy("//div[contains(text(),'1Manuel1234')]");
 

@@ -10,7 +10,12 @@ public class LoginVacio implements Question {
     @Override
     public Boolean answeredBy(Actor actor) {
 
-        return PaginaInicioUI.REQUIRED_MESSAGE_PASSWORD.resolveFor(actor).isVisible();
+        boolean required1 = PaginaInicioUI.REQUIRED_MESSAGE_PASSWORD.resolveFor(actor).isVisible();
+
+        boolean required = PaginaInicioUI.REQUIRED_MESSAGE_USERNAME.resolveFor(actor).isVisible();
+
+
+        return required1 && required;
 
     }
     public static LoginVacio displayed(){

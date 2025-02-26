@@ -12,11 +12,14 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Open;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+
+import java.util.Map;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -71,31 +74,30 @@ public class loginStepDefinition {
     @Then("debería ver el mensaje {string}")
     public void deberíaVerElMensajeBienvenido(String string) {
 
-        if(LoginFallido.displayed().answeredBy(manuel)){
+        //Crea un diccionario que evalua preguntas de un elemento visible
+        Map<Question<Boolean>, String> mensajes = Map.of (
 
-            System.out.println("Login Fallido: Credenciales Invalidas");
-            manuel.should(seeThat(LoginFallido.displayed(),equalTo(true)));
+                LoginFallido.displayed(), "Login Fallido: Credenciales Invalidas",
+                LoginInvalido.displayed(), "Login Fallido: Falta Usuario",
+                LoginVacio.displayed(), "Login Fallido: Falta Usuario y Contraseña",
+                LoginValido.displayed(), "Login Exitoso: Credenciales correctas"
 
-        }else if (LoginInvalido.displayed().answeredBy(manuel)) {
+         );
 
-            System.out.println("Login Fallido: Falta Usuario o Contraseña");
-            manuel.should(seeThat(LoginInvalido.displayed(), equalTo(true)));
+        //Recorre el map buscando la primera condicion que se cumpla
 
-        }else if (LoginVacio.displayed().answeredBy(manuel)) {
+        for (var entry : mensajes.entrySet()) {  //Representa cada iteracion  del bucle
 
-            manuel.should(seeThat(LoginVacio.displayed(), equalTo(true)));
-            manuel.should(seeThat(LoginInvalido.displayed(), equalTo(true)));
+            if (entry.getKey().answeredBy(manuel)) { //Obtener la clave de la Question
 
-        } else if (LoginValido.displayed().answeredBy(manuel)) {
+                manuel.should(seeThat(entry.getKey(), equalTo(true)));
+                System.out.println(entry.getValue());
 
-            System.out.println("Login Exitoso: Credenciales correctas");
-
-            manuel.should(seeThat(LoginValido.displayed(),equalTo(true)));
-
-        }else {
-
-            throw new AssertionError("No se pudo determinar el resultado del login.");
+                return;
+            }
         }
+
+        throw new AssertionError("No se pudo determinar el resultado del login.");
     }
 
 }
